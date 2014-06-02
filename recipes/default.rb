@@ -187,7 +187,7 @@ if node['rabbitmq']['cluster'] && (node['rabbitmq']['erlang_cookie'] != existing
     service_name node['rabbitmq']['service_name']
     pattern node['rabbitmq']['service_name']
     action :stop
-  end  
+  end
 
   template node['rabbitmq']['erlang_cookie_path'] do
     source 'doterlang.cookie.erb'
@@ -201,7 +201,7 @@ if node['rabbitmq']['cluster'] && (node['rabbitmq']['erlang_cookie'] != existing
 
   # Need to reset for clustering #
   execute 'reset-node' do
-    command 'rabbitmqctl stop_app && rabbitmqctl reset && rabbitmqctl start_app'
+    command 'sudo rabbitmqctl stop_app && sudo rabbitmqctl reset && sudo rabbitmqctl start_app'
     action :nothing
   end
 end
