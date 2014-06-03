@@ -201,7 +201,8 @@ if node['rabbitmq']['cluster'] && (node['rabbitmq']['erlang_cookie'] != existing
 
   # Need to reset for clustering #
   execute 'reset-node' do
-    command 'sudo rabbitmqctl stop_app && sudo rabbitmqctl reset && sudo rabbitmqctl start_app'
+    # command 'sudo rabbitmqctl stop_app && sudo rabbitmqctl reset && sudo rabbitmqctl start_app'
+    command 'sudo rabbitmqctl stop_app && sudo rabbitmqctl reset && sudo rabbitmqctl stop && sudo rabbitmq-server -detached'
     action :nothing
   end
 end
